@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>js-printer</title>
+		<style type="text/css">
+			body{margin: 0;padding: 0}
+			#content1,#content2{
+				width: 600px;
+				border: 1px solid black;
+				margin: 20px auto;
+				height: 300px;
+				text-indent: 24px;
+				padding: 5px;
+				text-shadow: 0 0 8px rgba(0,0,0,2);
+			}
+			#content1{display: none;}
+
+		</style>
+	</head>
+	<body>
+		<h1>
+			<center>simple printer result</center>
+		</h1>
+		<div id="content1">
+			　一位老和尚，他身边聚拢着一帮虔诚的弟子。这一天，他嘱咐弟子每人去南山打一担柴回来。弟子们匆匆行至离山不远的河边，人人目瞪口呆。只见洪水从山上奔泻而下，无论如何也休想渡河打柴了。无功而返，弟子们都有些垂头丧气。唯独一个小和尚与师傅坦然相对。师傅问其故，小和尚从怀中掏出一个苹果，递给师傅说，过不了河，打不了柴，见河边有棵苹果树，我就顺手把树上唯一的一个苹果摘来了。后来，这位小和尚成了师傅的衣钵传人。<br/>
+
+　　世上有走不完的路，也有过不了的河。过不了的河掉头而回，也是一种智慧。但真正的智慧还要在河边做一件事情：放飞思想的风筝，摘下一个“苹果”。历览古今，抱定这样一种生活信念的人，最终都实现了人生的突围和超越。
+		</div>
+		<div id="content2">
+		</div>
+		<script type="text/javascript">
+			~function(window,undefined){
+				function getId(id){
+					return (!id)?null:document.getElementById(id);
+				}
+				function printWord(){
+					this.con1=getId('content1'),
+					this.con2=getId('content2'),
+					this.speed=100;
+					this.printIn();
+				}
+				printWord.prototype={
+					printIn:function(){
+						var elem=this.con2,
+							str=this.con1.innerHTML,
+							speed=this.speed,
+							timer=null,
+							count=0;
+						timer=setInterval(function(){
+							elem.innerHTML=str.substring(0,count)+'|';
+							count++;
+							if(count>=str.length){
+								clearInterval(timer);
+								elem.innerHTML=str.substring(0,count);
+							}
+						},speed)
+					}
+				}
+
+				window.printWord=printWord;
+			}(window)
+			new printWord();
+		</script>
+	</body>
+</html>
